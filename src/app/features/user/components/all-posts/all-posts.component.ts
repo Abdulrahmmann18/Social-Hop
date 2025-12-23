@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { PostsService } from '../../services/posts.service';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { PostsService } from '../../services/posts/posts.service';
+import { OnePost } from '../../interfaces/onePost/one-post';
 
 @Component({
   selector: 'app-all-posts',
@@ -12,10 +13,15 @@ export class AllPostsComponent implements OnInit {
 
   private postsService : PostsService = inject(PostsService);
 
+  allPosts : WritableSignal<OnePost[]> = signal<OnePost[]>([])
+  
   ngOnInit(): void {
     this.postsService.getAllPosts().subscribe({
       next : (res) => {
-        console.log(res);
+        // console.log(res);
+        this.allPosts.set(res.posts);
+        console.log(this.allPosts());
+        
       }
     }) 
   }
