@@ -9,6 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { errorInterceptor } from './core/interceptors/error/error.interceptor';
 import { headerInterceptor } from './core/interceptors/header/header.interceptor';
+import { loadingScreenInterceptor } from './core/interceptors/loading/loading-screen-interceptor';
 
 
 export const appConfig: ApplicationConfig = {
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes), provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch(), withInterceptors([errorInterceptor, headerInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([errorInterceptor, headerInterceptor, loadingScreenInterceptor])),
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
   ]
