@@ -1,0 +1,21 @@
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 w-full h-16 bg-white shadow flex items-center justify-between px-6 z-50">
+    <!-- Logo -->
+    <div class="text-xl font-bold text-blue-600 cursor-pointer">
+        <img [routerLink]="['home']" src="/images/logo2.JPG" width="150px" alt="SocialHop Logo">
+    </div>
+
+    <!-- Profile Picture -->
+    <button (click)="toggleSidebar()" class="focus:outline-none">
+        <img src="/images/profile.png" alt="Profile"
+            class="w-10 h-10 rounded-full border-2 border-blue-500 cursor-pointer" />
+    </button>
+</nav>
+
+<!-- Overlay -->
+@if (isSidebarOpen()) {
+<div (click)="toggleSidebar()" class="fixed inset-0 bg-black/40 z-40"></div>
+}
+
+
+<app-sidebar [isSidebarOpen]="isSidebarOpen"></app-sidebar>
