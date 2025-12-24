@@ -1,20 +1,20 @@
-import { NgClass } from '@angular/common';
 import { Component, WritableSignal, inject, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule, NgClass, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
 
   private authService : AuthService = inject(AuthService)
-  private router : Router = inject(Router)
+  private router : Router = inject(Router);
+  private activatedRoute : ActivatedRoute = inject(ActivatedRoute);
   
   signupForm : FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
@@ -32,7 +32,7 @@ export class SignUpComponent {
     if (g.get('password')?.value === g.get('rePassword')?.value) {    
       return null;
     }
-    return { 'Matched' : false }
+    return {'Matched' : false}
   }
 
   submitForm()
@@ -41,7 +41,7 @@ export class SignUpComponent {
       // call signup API
       this.authService.signup(this.signupForm.value).subscribe({
         next : (res) => {
-          this.router.navigate(['/signin']);
+          this.router.navigate(['../signin'], { relativeTo: this.activatedRoute });
         }
       })
     }

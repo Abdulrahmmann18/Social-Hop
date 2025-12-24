@@ -1,5 +1,4 @@
-<div
-    class="min-h-screen py-8 bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 flex items-center justify-center">
+<div class="min-h-screen py-8 flex items-center justify-center">
 
     <div class="w-full max-w-lg bg-white/90 backdrop-blur rounded-2xl px-6 py-8 shadow-2xl border border-white">
 
@@ -108,8 +107,8 @@
                              placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" />
 
                     <i class="fa-solid cursor-pointer text-slate-500 hover:text-blue-500 transition
-                             absolute right-3 top-1/2 -translate-y-1/2"
-                        [ngClass]="showPassword() ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePassword()"></i>
+                             absolute right-3 top-1/2 -translate-y-1/2" [class.fa-eye-slash]="showPassword()"
+                        [class.fa-eye]="!showPassword()" (click)="togglePassword()"></i>
                 </div>
 
 
@@ -156,8 +155,8 @@
                              placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition" />
 
                     <i class="fa-solid cursor-pointer text-slate-500 hover:text-blue-500 transition
-                             absolute right-3 top-1/2 -translate-y-1/2"
-                        [ngClass]="showRePassword() ? 'fa-eye-slash' : 'fa-eye'" (click)="toggleRePassword()"></i>
+                             absolute right-3 top-1/2 -translate-y-1/2" [class.fa-eye-slash]="showRePassword()"
+                        [class.fa-eye]="!showRePassword()" (click)="toggleRePassword()"></i>
                 </div>
 
                 @if (signupForm.get('rePassword')?.touched) {
@@ -251,7 +250,7 @@
         </form>
 
         <div class="my-3 text-center">
-            <a class="hover:text-blue-500 hover:underline" [routerLink]="['/signin']">Already Have An Account?</a>
+            <a class="hover:text-blue-500 hover:underline" [routerLink]="['../signin']">Already Have An Account?</a>
         </div>
     </div>
 </div>

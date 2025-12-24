@@ -1,10 +1,11 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { PostsService } from '../../services/posts/posts.service';
 import { OnePost } from '../../interfaces/onePost/one-post';
+import { OnePostComponent } from "../one-post/one-post.component";
 
 @Component({
   selector: 'app-all-posts',
-  imports: [],
+  imports: [OnePostComponent],
   templateUrl: './all-posts.component.html',
   styleUrl: './all-posts.component.scss',
 })

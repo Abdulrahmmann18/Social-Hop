@@ -1,1 +1,6 @@
-<p>all-posts works!</p>
+@for (post of allPosts(); track post._id) {
+<div class="my-4">
+    <app-one-post [postData]="post"></app-one-post>
+</div>
+
+}

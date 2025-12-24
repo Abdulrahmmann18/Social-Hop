@@ -1,1 +1,49 @@
-<p>one-post works!</p>
+<div class="max-w-3xl mx-auto bg-white rounded-lg  shadow-xl overflow-hidden transition hover:cursor-pointer hover:shadow-2xl">
+
+    <!-- Header -->
+    <div class="flex items-center gap-3 p-4">
+        @if (postData.user.photo) {
+        <img [src]="postData.user.photo" alt="user" class="w-12 h-12 rounded-full object-cover" />
+        }
+
+        <div>
+            <h4 class="text-sm font-semibold text-slate-800">
+                {{postData.user.name}}
+            </h4>
+            <p class="text-xs text-slate-500">
+                {{postData.createdAt | date:'short'}}
+            </p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="px-4 pb-3 text-sm text-slate-700 leading-relaxed">
+        {{postData.body}}
+    </div>
+
+    <!-- Image (optional) -->
+    @if (postData.image) {
+    <div class="w-full h-64">
+        <img [src]="postData.image" alt="post image" class="w-full h-full object-cover" />
+    </div>
+    }
+
+
+    <!-- Actions -->
+    <div class="flex justify-between px-4 py-3 border-t text-sm text-slate-600">
+
+        <button class="flex items-center gap-1 hover:text-red-500 active:scale-125 transition hover:cursor-pointer">
+            <i class="fa-regular fa-heart"></i> Like
+        </button>
+
+
+        <button class="flex items-center gap-1 hover:text-red-500 active:scale-125 transition hover:cursor-pointer">
+            <i class="fa-regular fa-comment"></i> <span>Comment</span>
+        </button>
+
+        <button class="flex items-center gap-1 hover:text-red-500 active:scale-125 transition hover:cursor-pointer">
+            <i class="fa-solid fa-share"></i> <span>Share</span>
+        </button>
+
+    </div>
+</div>
