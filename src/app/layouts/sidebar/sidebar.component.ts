@@ -3,10 +3,10 @@ import { Component, Input, signal, WritableSignal } from '@angular/core';
 @Component({
   selector: 'app-sidebar',
   imports: [],
-  templateUrl: './sidebar.html',
-  styleUrl: './sidebar.scss',
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.scss',
 })
-export class Sidebar {
+export class SidebarComponent {
   @Input() isSidebarOpen : WritableSignal<boolean> = signal<boolean>(false)
 
   toggleSidebar() {

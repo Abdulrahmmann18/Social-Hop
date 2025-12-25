@@ -7,7 +7,7 @@
 
     <!-- Profile Picture -->
     <button (click)="toggleSidebar()" class="focus:outline-none">
-        <img src="/images/profile.png" alt="Profile"
+        <img [src]="userInfo().photo" alt="Profile"
             class="w-10 h-10 rounded-full border-2 border-blue-500 cursor-pointer" />
     </button>
 </nav>

@@ -22,7 +22,7 @@ export class SignUpComponent {
     password: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
     rePassword: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
     dateOfBirth: new FormControl(null, [Validators.required, Validators.pattern(/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)]),
-    gender: new FormControl(null, [Validators.pattern(/(male|female)/i)])
+    gender: new FormControl(null, [Validators.required, Validators.pattern(/(male|female)/i)])
   }, this.validatePasswordMatch)
 
   showPassword : WritableSignal<boolean> = signal<boolean>(false);

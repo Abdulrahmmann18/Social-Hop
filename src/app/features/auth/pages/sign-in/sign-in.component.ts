@@ -28,8 +28,7 @@ export class SignInComponent {
       // call signin API
       this.authService.signin(this.signinForm.value).subscribe({
         next : (res) => {    
-          localStorage.setItem('userToken', res.token);    
-          console.log(this.activatedRoute);         
+          localStorage.setItem('userToken', res.token);           
           this.router.navigate(["../../user/home"], { relativeTo: this.activatedRoute });
         }
       })

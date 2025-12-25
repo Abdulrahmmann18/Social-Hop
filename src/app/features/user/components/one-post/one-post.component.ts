@@ -1,6 +1,6 @@
 import { Component, Input, signal, WritableSignal } from '@angular/core';
-import { OnePost } from '../../interfaces/onePost/one-post';
 import { DatePipe } from '@angular/common';
+import { OnePost } from '../../interfaces/onePost/one-post.interface';
 
 @Component({
   selector: 'app-one-post',
