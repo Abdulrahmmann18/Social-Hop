@@ -14,4 +14,8 @@ export class UserService {
   {
     return this.httpClient.get(`${environment.baseURL}users/profile-data`);
   }
+  changePassword(data : any) : Observable<any>
+  {
+    return this.httpClient.patch(`${environment.baseURL}users/change-password`, data)
+  }
 }
