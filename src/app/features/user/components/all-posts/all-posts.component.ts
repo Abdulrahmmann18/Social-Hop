@@ -19,10 +19,7 @@ export class AllPostsComponent implements OnInit {
   ngOnInit(): void {
     this.postsService.getAllPosts().subscribe({
       next : (res) => {
-        // console.log(res);
-        this.allPosts.set(res.posts);
-        console.log(this.allPosts());
-        
+        this.allPosts.set(res.posts);       
       }
     }) 
   }

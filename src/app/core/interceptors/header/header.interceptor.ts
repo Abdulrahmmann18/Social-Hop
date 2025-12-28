@@ -6,7 +6,7 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
 
   let platformService : PlatformService = inject(PlatformService);
   
-  if (platformService.isBrowserSide()) {
+  if (platformService.isBrowserSide()) {   
     if (localStorage.getItem('userToken')) {
       let tokenHeader : any = {token : localStorage.getItem('userToken')}
       req = req.clone(

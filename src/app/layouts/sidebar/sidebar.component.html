@@ -12,6 +12,12 @@
     <!-- Sidebar Content -->
     <ul class="p-4 space-y-4">
         <li>
+            <a (click)="toggleSidebar()" [routerLink]="['profilePage']"
+                class="block text-gray-700 hover:text-blue-600 cursor-pointer">
+                Profile Page
+            </a>
+        </li>
+        <li>
             <a (click)="toggleSidebar()" [routerLink]="['changePassword']"
                 class="block text-gray-700 hover:text-blue-600 cursor-pointer">
                 Change Password

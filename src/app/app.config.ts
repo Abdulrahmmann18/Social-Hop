@@ -19,6 +19,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(), withInterceptors([errorInterceptor, headerInterceptor, loadingScreenInterceptor])),
     provideAnimations(), // required animations providers
-    provideToastr(), // Toastr providers
+    provideToastr({
+      positionClass: 'toast-top-center',
+      closeButton: true,
+      timeOut: 10000,
+      tapToDismiss: true,
+      preventDuplicates: true,
+    }), // Toastr providers
   ]
 };

@@ -11,8 +11,12 @@ export class PostsService {
   
   private httpClient : HttpClient = inject(HttpClient);
 
-  getAllPosts():Observable<any>
+  getAllPosts() : Observable<any>
   {
-    return this.httpClient.get(`${environment.baseURL}posts`)
+    return this.httpClient.get(`${environment.baseURL}posts`);
+  }
+  getUserPosts() : Observable<any>
+  {
+    return this.httpClient.get(`${environment.baseURL}users/664bcf3e33da217c4af21f00/posts`);
   }
 }
