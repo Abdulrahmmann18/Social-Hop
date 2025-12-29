@@ -7,7 +7,7 @@
     <div class="flex items-center gap-3 mb-3">
         <!-- Avatar -->
         <div class="w-10 h-10 rounded-full bg-gray-300">
-            <img [src]="userInfo().photo" alt="Profile" class="cursor-pointer" />
+            <img [src]="userInfo().photo" alt="Profile" class="w-10 h-10 rounded-full border-2 border-blue-500" />
         </div>
 
         <!-- Fake Input -->
@@ -39,7 +39,7 @@
         <!-- User Info -->
         <div class="flex items-center gap-3 mb-4">
             <div class="w-10 h-10 bg-gray-300 rounded-full">
-                <img [src]="userInfo().photo" alt="Profile" class="cursor-pointer" />
+                <img [src]="userInfo().photo" alt="Profile" class="w-10 h-10 rounded-full border-2 border-blue-500" />
             </div>
             <div>
                 <p class="font-medium text-gray-700">{{userInfo().name}}</p>

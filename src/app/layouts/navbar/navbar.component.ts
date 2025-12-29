@@ -27,6 +27,11 @@ export class NavbarComponent implements OnInit {
         this.userInfo.set(res.user);         
       }
     )
+    this.userService.userInfo.subscribe(
+      () => {
+        this.userInfo.set(this.userService.userInfo.getValue());
+      }
+    )
   }
 
   isSidebarOpen : WritableSignal<boolean> = signal<boolean>(false);

@@ -10,6 +10,8 @@ import { UserData } from '../../interfaces/userData/user-data.interface';
 export class UserService {
   private httpClient : HttpClient = inject(HttpClient);
 
+  userInfo : BehaviorSubject<UserData> = new BehaviorSubject<UserData>({} as UserData);
+  
   getLoggedUserData() : Observable<any>
   {
     return this.httpClient.get(`${environment.baseURL}users/profile-data`);
@@ -17,5 +19,9 @@ export class UserService {
   changePassword(data : any) : Observable<any>
   {
     return this.httpClient.patch(`${environment.baseURL}users/change-password`, data)
+  }
+  uploadProfilePhoto(photoForm : FormData) : Observable<any>
+  {
+    return this.httpClient.put(`${environment.baseURL}users/upload-photo`, photoForm)
   }
 }
