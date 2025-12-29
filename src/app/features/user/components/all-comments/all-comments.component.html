@@ -1,4 +1,4 @@
-@for (comment of allComments; track comment._id) {
+@for (comment of allComments(); track comment._id) {
 <div class="my-2">
     <app-one-comment [commentData]="comment"></app-one-comment>
 </div>
