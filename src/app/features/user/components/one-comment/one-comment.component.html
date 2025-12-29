@@ -1,1 +1,22 @@
-<p>one-comment works!</p>
+<!-- Comments Section -->
+<div class=" px-4 py-3 space-y-4">
+
+    <!-- Single Comment -->
+    <div class="flex gap-3">
+        <img src="/images/profile.png" class="w-9 h-9 rounded-full object-cover" alt="user" />
+        <div class="bg-slate-100 rounded-2xl px-4 py-2 max-w-[85%]">
+            <p class="text-sm font-semibold text-slate-800">
+                {{commentData.commentCreator.name}}
+            </p>
+            <p class="text-sm text-slate-700 leading-relaxed">
+                {{commentData.content}}
+            </p>
+
+            <div class="flex gap-4 mt-1 text-xs text-slate-500">
+                <span class="hover:underline cursor-pointer">Like</span>
+                <span class="hover:underline cursor-pointer">Reply</span>
+                <span>{{commentData.createdAt | date:'short'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

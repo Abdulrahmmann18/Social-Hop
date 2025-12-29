@@ -4,10 +4,11 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { UserService } from '../../services/user/user.service';
 import { UserData } from '../../interfaces/userData/user-data.interface';
 import { FormsModule } from "@angular/forms";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-create',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './post-create.component.html',
   styleUrl: './post-create.component.scss',
 })

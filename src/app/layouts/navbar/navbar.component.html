@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="fixed top-0 left-0 w-full h-16 bg-white shadow flex items-center justify-between px-6 z-50">
     <!-- Logo -->
-    <div class="text-xl font-bold text-blue-600 cursor-pointer">
+    <div (click)="isSidebarOpen() ? toggleSidebar() : null" class="text-xl font-bold text-blue-600 cursor-pointer">
         <img [routerLink]="['home']" src="/images/logo2.JPG" width="150px" alt="SocialHop Logo">
     </div>
 
