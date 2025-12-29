@@ -19,4 +19,8 @@ export class PostsService {
   {
     return this.httpClient.get(`${environment.baseURL}users/664bcf3e33da217c4af21f00/posts`);
   }
+  createPost(postData : FormData) : Observable<any>
+  {
+    return this.httpClient.post(`${environment.baseURL}posts`, postData)
+  }
 }

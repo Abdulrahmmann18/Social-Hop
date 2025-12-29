@@ -48,7 +48,7 @@
         </div>
 
         <!-- Textarea -->
-        <textarea placeholder="What's on your mind?" class="w-full h-32 resize-none rounded-lg border border-gray-300 p-3
+        <textarea [(ngModel)]="postContent" placeholder="What's on your mind?" class="w-full h-32 resize-none rounded-lg border border-gray-300 p-3
                  focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4">
         </textarea>
 
@@ -64,7 +64,7 @@
                     <p class="mb-2 text-sm"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                     <p class="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                 </div>
-                <input id="dropzone-file" type="file" class="hidden" />
+                <input (change)="captureImage($event)" id="dropzone-file" type="file" class="hidden" />
             </label>
         </div>
 
@@ -76,7 +76,7 @@
                 Cancel
             </button>
 
-            <button class="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-indigo-500
+            <button (click)="craetePost()" class="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-indigo-500
             hover:from-purple-600 hover:to-indigo-600
             focus:outline-none focus:ring-2 focus:ring-purple-300  cursor-pointer">
                 Post
