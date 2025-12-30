@@ -17,10 +17,22 @@ export class AllPostsComponent implements OnInit {
   allPosts : WritableSignal<OnePost[]> = signal<OnePost[]>([])
   
   ngOnInit(): void {
+    this.getAllPosts();
+  }
+
+  getAllPosts()
+  {
     this.postsService.getAllPosts().subscribe({
       next : (res) => {
         this.allPosts.set(res.posts);       
       }
     }) 
+  }
+
+  refreshPosts(isChanged : boolean)
+  {   
+    if (isChanged) {
+      this.getAllPosts();
+    }
   }
 }

@@ -23,4 +23,16 @@ export class PostsService {
   {
     return this.httpClient.post(`${environment.baseURL}posts`, postData)
   }
+  getSinglePost(pId : string) : Observable<any>
+  {
+    return this.httpClient.get(`${environment.baseURL}posts/${pId}`);
+  }
+  updatePost(pId : string, postData : FormData) : Observable<any>
+  {
+    return this.httpClient.put(`${environment.baseURL}posts/${pId}`, postData);
+  }
+  deletePost(pId : string) : Observable<any>
+  {
+    return this.httpClient.delete(`${environment.baseURL}posts/${pId}`);
+  }
 }

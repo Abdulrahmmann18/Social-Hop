@@ -2,24 +2,49 @@
     class="max-w-3xl mx-auto bg-white rounded-lg  shadow-xl overflow-hidden transition hover:cursor-pointer hover:shadow-2xl">
 
     <!-- Header -->
-    <div class="flex items-center gap-3 p-4">
-        @if (postData.user.photo) {
-        <img [src]="postData.user.photo" alt="user" class="w-12 h-12 rounded-full object-cover" />
+    <div class="flex justify-between  p-4">
+        <div class="flex items-center gap-3">
+            @if (postData.user.photo) {
+            <img [src]="postData.user.photo" alt="user" class="w-12 h-12 rounded-full object-cover" />
+            }
+
+            <div>
+                <h4 class="text-sm font-semibold text-slate-800">
+                    {{postData.user.name}}
+                </h4>
+                <p class="text-xs text-slate-500">
+                    {{postData.createdAt | date:'short'}}
+                </p>
+            </div>
+        </div>
+
+        <!-- edit or delete for user posts -->
+        @if (postData.user._id === userInfo()._id) {
+        <div class="relative justify-self-end">
+            <button (click)="toggleMenu()" class="text-slate-500 hover:text-black">
+                <i class="fa-solid fa-ellipsis cursor-pointer"></i>
+            </button>
+
+            @if (menuOpen()) {
+            <div class="absolute right-0 mt-2 w-32 bg-white border rounded-lg shadow-lg z-20">
+                <button class="block w-full text-left px-4 py-2 rounded-lg hover:bg-slate-100 text-sm">
+                    Edit
+                </button>
+                <button class="block w-full text-left px-4 py-2 rounded-lg hover:bg-red-100 text-red-600 text-sm"
+                    (click)="deletePost()">
+                    Delete
+                </button>
+            </div>
+            }
+        </div>
         }
 
-        <div>
-            <h4 class="text-sm font-semibold text-slate-800">
-                {{postData.user.name}}
-            </h4>
-            <p class="text-xs text-slate-500">
-                {{postData.createdAt | date:'short'}}
-            </p>
-        </div>
+
     </div>
 
     <!-- Content -->
     <div class="px-4 pb-3 text-sm text-slate-700 leading-relaxed">
-        {{postData.body}}
+        {{ postData.body }}
     </div>
 
     <!-- Image (optional) -->
