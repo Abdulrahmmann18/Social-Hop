@@ -9,10 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { CommentsService } from '../../services/comments/comments.service';
 import { ToastrService } from 'ngx-toastr';
 import { PostsService } from '../../services/posts/posts.service';
+import { CommentCreateComponent } from "../comment-create/comment-create.component";
 
 @Component({
   selector: 'app-one-post',
-  imports: [DatePipe, AllCommentsComponent, FormsModule],
+  imports: [DatePipe, AllCommentsComponent, FormsModule, CommentCreateComponent],
   templateUrl: './one-post.component.html',
   styleUrl: './one-post.component.scss',
 })
@@ -43,7 +44,6 @@ export class OnePostComponent implements OnInit{
   imageisClicked : WritableSignal<boolean> = signal<boolean>(false);
   commentsisClicked : WritableSignal<boolean> = signal<boolean>(false);
   userInfo : WritableSignal<UserData> = signal<UserData>({} as UserData);
-  commentContent : string = '';
   postComments : WritableSignal<oneComment[]> = signal<oneComment[]>([]); 
   postCommentsNumber : WritableSignal<number> = signal<number>(0);
   menuOpen  : WritableSignal<boolean> = signal<boolean>(false);
@@ -63,15 +63,6 @@ export class OnePostComponent implements OnInit{
     document.body.style.overflow = 'auto';
   }
 
-  createComment(comment : commentForm)
-  {
-    this.commentsService.createComment(comment).subscribe(
-      (res) => {
-        this.toastrService.success(res.message);
-        this.commentContent = 'hh';
-      }
-    )
-  }
   getPostComments(pId : string)
   {
     this.commentsService.getPostComments(pId).subscribe(
@@ -80,16 +71,6 @@ export class OnePostComponent implements OnInit{
         this.postCommentsNumber.set(res.total);
       }
     )
-  }
-
-  addComment()
-  {
-    const comment : commentForm = {
-      'content' : this.commentContent,
-      'post' : this.postData._id
-    }; 
-    this.createComment(comment);
-    this.getPostComments(this.postData._id);
   }
 
   toggleMenu() 

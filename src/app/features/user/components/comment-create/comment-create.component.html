@@ -1,0 +1,23 @@
+<!-- Write Comment -->
+<div class="border-t px-4 py-3 sticky bottom-0 bg-white">
+
+    <div class="flex items-center gap-3">
+
+        <!-- User Avatar -->
+        <img [src]="userInfo().photo" class="w-9 h-9 rounded-full object-cover" alt="user" />
+
+        <!-- Input -->
+        <div class="flex-1 relative">
+            <input [(ngModel)]="commentContent" type="text" placeholder="Write a comment..." class="w-full rounded-full bg-slate-100 px-4 py-2 text-sm
+                 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+            <!-- Send -->
+            <button class="absolute right-3 top-1/2 -translate-y-1/2
+                 text-slate-500 hover:text-blue-500">
+                <i (click)="addComment()" class="fa-solid fa-paper-plane cursor-pointer"></i>
+            </button>
+        </div>
+
+    </div>
+
+</div>

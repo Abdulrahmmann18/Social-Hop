@@ -1,8 +1,6 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { PostsService } from '../../services/posts/posts.service';
 import { UserService } from '../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { OnePost } from '../../interfaces/onePost/one-post.interface';
 import { UserData } from '../../interfaces/userData/user-data.interface';
 
 @Component({
