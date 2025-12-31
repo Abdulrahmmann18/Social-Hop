@@ -1,0 +1,71 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" (click)="close.emit()">
+
+    <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative" (click)="$event.stopPropagation()">
+
+        <!-- Close -->
+        <button (click)="close.emit()"
+            class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl cursor-pointer">
+            ✕
+        </button>
+
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Create Post
+        </h2>
+
+        <!-- User Info -->
+        <div class="flex items-center gap-3 mb-4">
+            <img [src]="userInfo().photo" class="w-10 h-10 rounded-full border-2 border-blue-500" />
+            <div>
+                <p class="font-medium text-gray-700">{{ userInfo().name }}</p>
+                <p class="text-xs text-gray-500">Public</p>
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <textarea [(ngModel)]="postContent" placeholder="What's on your mind?" class="w-full h-32 resize-none rounded-lg border p-3 mb-4
+             focus:outline-none focus:ring-1 focus:ring-black">
+        </textarea>
+
+        <!-- Upload -->
+        <div class="flex items-center justify-center w-full rounded-lg border border-gray-700 mb-4">
+            @if (!fileIsSelected()) {
+            <label for="dropzone-file"
+                class="flex flex-col items-center justify-center w-full h-64 bg-neutral-secondary-medium border border-dashed border-default-strong rounded-base cursor-pointer hover:bg-neutral-tertiary-medium">
+                <div class="flex flex-col items-center justify-center text-body pt-5 pb-6">
+                    <svg class="w-8 h-8 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2" />
+                    </svg>
+                    <p class="mb-2 text-sm"><span class="font-semibold">Click to upload</span></p>
+                </div>
+                <input (change)="captureImage($event)" id="dropzone-file" type="file" class="hidden" />
+            </label>
+            }
+            @else {
+            <div class="flex flex-col items-center justify-center w-full h-64 bg-gray-100 rounded-lg border relative">
+                <p class="text-sm text-gray-700">File selected ✅</p>
+                <button (click)="fileIsSelected.set(false); postForm.delete('image')"
+                    class="absolute top-2 right-2 text-red-500 bg-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-200">
+                    ✕
+                </button>
+            </div>
+            }
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-3">
+            <button (click)="close.emit()" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+                Cancel
+            </button>
+
+            <button (click)="craetePost()" class="px-4 py-2 rounded-lg text-white
+               bg-gradient-to-r from-purple-500 to-indigo-500
+               hover:from-purple-600 hover:to-indigo-600">
+                Post
+            </button>
+        </div>
+
+    </div>
+</div>

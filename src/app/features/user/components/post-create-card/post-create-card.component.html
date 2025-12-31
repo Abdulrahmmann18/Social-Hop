@@ -1,0 +1,18 @@
+<div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-4
+            border border-gray-200 cursor-pointer
+            hover:shadow-md transition">
+
+    <div class="flex items-center gap-3">
+        <!-- Avatar -->
+        <div class="w-10 h-10 rounded-full bg-gray-300">
+            <img [routerLink]="['../profilePage']" [src]="userInfo().photo" alt="Profile"
+                class="w-10 h-10 rounded-full border-2 border-blue-500" />
+        </div>
+
+        <!-- Fake Input -->
+        <div (click)="open.emit()" class="flex-1 px-4 py-2 rounded-full bg-gray-100
+             text-gray-500 hover:bg-gray-200 transition">
+            What's on your mind?
+        </div>
+    </div>
+</div>
