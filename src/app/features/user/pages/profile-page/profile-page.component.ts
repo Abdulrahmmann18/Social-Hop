@@ -29,10 +29,4 @@ export class ProfilePageComponent implements OnInit {
     }) 
   }
 
-  refreshPosts(isChanged : boolean)
-  {   
-    if (isChanged) {
-      this.getUserPosts();
-    }
-  }
 }

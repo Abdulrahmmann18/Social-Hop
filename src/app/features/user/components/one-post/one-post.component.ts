@@ -9,10 +9,11 @@ import { PostsService } from '../../services/posts/posts.service';
 import { PostCardComponent } from "../post-card/post-card.component";
 import { PostLayerComponent } from "../post-layer/post-layer.component";
 import { oneComment } from '../../interfaces/oneComment/one-comment.interface';
+import { PostCreateModalComponent } from "../post-create-modal/post-create-modal.component";
 
 @Component({
   selector: 'app-one-post',
-  imports: [FormsModule, PostCardComponent, PostLayerComponent],
+  imports: [FormsModule, PostCardComponent, PostLayerComponent, PostCreateModalComponent],
   templateUrl: './one-post.component.html',
   styleUrl: './one-post.component.scss',
 })
@@ -38,7 +39,7 @@ export class OnePostComponent implements OnInit{
   private toastrService : ToastrService = inject(ToastrService);
 
   @Input() postData : OnePost = {} as OnePost;
-  @Output() refreshPosts : EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  @Output() refreshPosts : EventEmitter<void> = new EventEmitter<void>();
   
   imageisClicked : WritableSignal<boolean> = signal<boolean>(false);
   commentsisClicked : WritableSignal<boolean> = signal<boolean>(false);
@@ -46,6 +47,9 @@ export class OnePostComponent implements OnInit{
   postComments : WritableSignal<oneComment[]> = signal<oneComment[]>([]); 
   postCommentsNumber : WritableSignal<number> = signal<number>(0);
   menuOpen  : WritableSignal<boolean> = signal<boolean>(false);
+  postContent: WritableSignal<string> = signal<string>('');
+  TaskIsUpdate : WritableSignal<boolean> = signal<boolean>(false);
+  showPostCreate: WritableSignal<boolean> = signal(false);
 
   toggleImage()
   {
@@ -77,12 +81,34 @@ export class OnePostComponent implements OnInit{
     this.menuOpen.set(!this.menuOpen());
   }
 
+  setFormForUpdate()
+  { 
+    this.getSpecPost(this.postData._id);
+  }
+
+  closeModal() {
+    this.showPostCreate.set(false);
+    this.postContent.set('');
+  }
+
+  getSpecPost(pId : string)
+  {
+    this.postsService.getSinglePost(pId).subscribe(
+      (res) => {
+        this.postData = res.post;
+        this.postContent.set(this.postData.body);
+        this.TaskIsUpdate.set(true);
+        this.showPostCreate.set(true);
+      }
+    )
+  }
+
   deletePost()
   {
     this.postsService.deletePost(this.postData._id).subscribe(
       (res) => {
         this.toastrService.success(res.message);
-        this.refreshPosts.emit(true);
+        this.refreshPosts.emit();
       }
     )
   }

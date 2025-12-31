@@ -11,14 +11,15 @@ import { OnePost } from '../../interfaces/onePost/one-post.interface';
 })
 export class AllPostsComponent implements OnInit {
   
-
+  ngOnInit(): void {
+    this.getAllPosts();
+  }
+  
   private postsService : PostsService = inject(PostsService);
 
   allPosts : WritableSignal<OnePost[]> = signal<OnePost[]>([])
   
-  ngOnInit(): void {
-    this.getAllPosts();
-  }
+
 
   getAllPosts()
   {
@@ -27,12 +28,5 @@ export class AllPostsComponent implements OnInit {
         this.allPosts.set(res.posts);       
       }
     }) 
-  }
-
-  refreshPosts(isChanged : boolean)
-  {   
-    if (isChanged) {
-      this.getAllPosts();
-    }
   }
 }

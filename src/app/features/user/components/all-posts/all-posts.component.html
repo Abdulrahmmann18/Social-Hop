@@ -1,6 +1,5 @@
 @for (post of allPosts(); track post._id) {
 <div class="my-4">
-    <app-one-post (refreshPosts)="refreshPosts($event)" [postData]="post"></app-one-post>
+    <app-one-post (refreshPosts)="getAllPosts()" [postData]="post"></app-one-post>
 </div>
-
 }

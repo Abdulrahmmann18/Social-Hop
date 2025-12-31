@@ -22,7 +22,8 @@
         </div>
 
         <!-- Textarea -->
-        <textarea [(ngModel)]="postContent" placeholder="What's on your mind?" class="w-full h-32 resize-none rounded-lg border p-3 mb-4
+        <textarea [ngModel]="postContent()" (ngModelChange)="postContent.set($event)" placeholder="What's on your mind?"
+            class="w-full h-32 resize-none rounded-lg border p-3 mb-4
              focus:outline-none focus:ring-1 focus:ring-black">
         </textarea>
 
@@ -60,10 +61,10 @@
                 Cancel
             </button>
 
-            <button (click)="craetePost()" class="px-4 py-2 rounded-lg text-white
+            <button (click)="SubmitPost()" class="px-4 py-2 rounded-lg text-white
                bg-gradient-to-r from-purple-500 to-indigo-500
                hover:from-purple-600 hover:to-indigo-600">
-                Post
+                <ng-content></ng-content>
             </button>
         </div>
 

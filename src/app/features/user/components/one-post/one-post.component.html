@@ -1,5 +1,5 @@
-<app-post-card [postData]="postData" [userInfo]="userInfo()" [commentsCount]="postCommentsNumber()"
-    (openLayer)="openPostLayer()" (deletePost)="deletePost()">
+<app-post-card [postData]="postData" [userInfo]="userInfo" [commentsCount]="postCommentsNumber()"
+    (openLayer)="openPostLayer()" (setFormForUpdate)="setFormForUpdate()" (deletePost)="deletePost()">
 </app-post-card>
 
 
@@ -7,4 +7,11 @@
 <app-post-layer [postData]="postData" [postComments]="postComments" (close)="closePostLayer()"
     (commentAdded)="getPostComments(postData._id)">
 </app-post-layer>
+}
+
+@if (showPostCreate()) {
+<app-post-create-modal [TaskIsUpdate]="TaskIsUpdate" [updatedPostId]="postData._id" [postContent]="postContent"
+    [userInfo]="userInfo" (close)="closeModal()" (postIsSubmitted)="refreshPosts.emit()">
+    Update
+</app-post-create-modal>
 }

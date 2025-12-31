@@ -13,12 +13,13 @@ export class PostCardComponent {
 
   /* Inputs */
   @Input({ required: true }) postData!: OnePost;
-  @Input({ required: true }) userInfo!: UserData;
+  @Input({ required: true }) userInfo : WritableSignal<UserData> = signal<UserData>({} as UserData);
   @Input({ required: true }) commentsCount!: number;
 
   /* Outputs */
   @Output() openLayer  : EventEmitter<void> = new EventEmitter<void>();
   @Output() deletePost : EventEmitter<void> = new EventEmitter<void>();
+  @Output() setFormForUpdate : EventEmitter<void> = new EventEmitter<void>();
 
   menuOpen: WritableSignal<boolean> = signal(false);
   imageOpened: WritableSignal<boolean> = signal(false);
@@ -30,4 +31,5 @@ export class PostCardComponent {
   toggleImage() {
     this.imageOpened.set(!this.imageOpened());
   }
+
 }

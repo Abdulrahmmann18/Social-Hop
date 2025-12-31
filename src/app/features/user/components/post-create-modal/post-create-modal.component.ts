@@ -1,5 +1,5 @@
 import { UserData } from './../../interfaces/userData/user-data.interface';
-import { Component, EventEmitter, inject, Input, Output, signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, signal, SimpleChanges, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostsService } from '../../services/posts/posts.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,17 +12,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PostCreateModalComponent {
 
+
   postForm : FormData = new FormData();
-  postContent: string = '';
   fileIsSelected : WritableSignal<boolean> = signal<boolean>(false);
 
   private postsService : PostsService = inject(PostsService);
   private toastrService : ToastrService = inject(ToastrService);
   
   @Input({ required: true }) userInfo : WritableSignal<UserData> = signal<UserData>({} as UserData);
+  @Input() postContent: WritableSignal<string> = signal<string>('');
+  @Input() TaskIsUpdate : WritableSignal<boolean> = signal<boolean>(false);
+  @Input() updatedPostId!: string;
 
   @Output() close : EventEmitter<void> = new EventEmitter<void>();
-
+  @Output() postIsSubmitted : EventEmitter<void> = new EventEmitter<void>();
+  
 
   captureImage(eInfo : Event)
   {
@@ -30,19 +34,37 @@ export class PostCreateModalComponent {
     if (targetInput.files) {
       this.postForm.set("image", targetInput.files[0]);
       this.fileIsSelected.set(true);
-      this.postContent = '';     
+      this.postContent.set('');     
     }
   }
 
-  craetePost()
+  // SubmitPost -> works as create post if TaskIsUpdate = false
+  // SubmitPost -> works as Update post if TaskIsUpdate = true
+  SubmitPost()
   {
-    this.postForm.set("body", this.postContent);   
-    // call createPost API
-    this.postsService.createPost(this.postForm).subscribe(
-      (res) => {
-        this.toastrService.success(res.message);
-        this.close.emit();
-      }
-    )
+    this.postForm.set("body", this.postContent());   
+    if (!this.TaskIsUpdate()) 
+    {
+      // create -> call createPost API
+      this.postsService.createPost(this.postForm).subscribe(
+        (res) => {
+          this.toastrService.success(res.message);
+          this.postIsSubmitted.emit();
+          this.close.emit();
+        }
+      )
+    }
+    else
+    {
+      // Update -> call updatePost API
+      this.postsService.updatePost(this.updatedPostId, this.postForm).subscribe(
+        (res) => {
+          this.toastrService.success(res.message);
+          this.postIsSubmitted.emit();
+          this.close.emit();
+        }
+      )
+    }
+
   }
 }
