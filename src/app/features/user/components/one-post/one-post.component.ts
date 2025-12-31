@@ -1,19 +1,18 @@
-import { commentForm, oneComment } from './../../interfaces/oneComment/one-comment.interface';
 import { UserService } from './../../services/user/user.service';
-import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output, signal, ViewChild, WritableSignal } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, inject, Input, OnInit, Output, signal, WritableSignal } from '@angular/core';
 import { OnePost } from '../../interfaces/onePost/one-post.interface';
-import { AllCommentsComponent } from "../all-comments/all-comments.component";
 import { UserData } from '../../interfaces/userData/user-data.interface';
 import { FormsModule } from '@angular/forms';
 import { CommentsService } from '../../services/comments/comments.service';
 import { ToastrService } from 'ngx-toastr';
 import { PostsService } from '../../services/posts/posts.service';
-import { CommentCreateComponent } from "../comment-create/comment-create.component";
+import { PostCardComponent } from "../post-card/post-card.component";
+import { PostLayerComponent } from "../post-layer/post-layer.component";
+import { oneComment } from '../../interfaces/oneComment/one-comment.interface';
 
 @Component({
   selector: 'app-one-post',
-  imports: [DatePipe, AllCommentsComponent, FormsModule, CommentCreateComponent],
+  imports: [FormsModule, PostCardComponent, PostLayerComponent],
   templateUrl: './one-post.component.html',
   styleUrl: './one-post.component.scss',
 })
