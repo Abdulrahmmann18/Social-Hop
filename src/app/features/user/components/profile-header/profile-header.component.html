@@ -3,8 +3,8 @@
 
     <!-- Profile Image Wrapper -->
     <div class="relative w-36 h-36 mx-auto">
-        <img [src]="userInfo().photo" alt="Profile"
-            class="w-36 h-36 rounded-full object-cover border-4 border-white shadow-md" />
+        <img (click)="toggleImage()" [src]="userInfo().photo" alt="Profile"
+            class="w-36 h-36 rounded-full object-cover border-4 border-white shadow-md cursor-pointer" />
 
         <!-- Camera Button -->
         <button (click)="openModal()" class="absolute bottom-1 right-1 bg-slate-800 hover:bg-slate-700 text-white
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<!-- Modal Overlay -->
+<!-- upload photo Modal Overlay -->
 @if (isOpen()) {
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
 
@@ -70,5 +70,20 @@
         </div>
 
     </div>
+</div>
+}
+
+<!-- Image Overlay -->
+@if (imageOpened()) {
+<div class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center" (click)="toggleImage()">
+
+    <!-- Close Button -->
+    <button class="absolute top-5 right-5 text-white text-2xl" (click)="toggleImage(); $event.stopPropagation()">
+        <i class="fa-solid fa-xmark cursor-pointer hover:text-red-500"></i>
+    </button>
+
+    <!-- Image -->
+    <img [src]="userInfo().photo" class="max-w-[90%] max-h-[90%] object-contain rounded-lg"
+        (click)="$event.stopPropagation()" />
 </div>
 }

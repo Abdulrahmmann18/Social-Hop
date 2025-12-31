@@ -17,6 +17,7 @@ export class ProfileHeaderComponent {
   isOpen : WritableSignal<boolean> = signal<boolean>(false);
   userInfo : WritableSignal<UserData> = signal<UserData>({} as UserData) 
   profilePhotoForm : FormData = new FormData();
+  imageOpened: WritableSignal<boolean> = signal(false);
   
   ngOnInit(): void {
     this.getLoggedUserData();
@@ -35,6 +36,10 @@ export class ProfileHeaderComponent {
         this.userService.userInfo.next(res.user);     
       }
     )
+  }
+  
+  toggleImage() {
+    this.imageOpened.set(!this.imageOpened());
   }
   
   openModal() 
